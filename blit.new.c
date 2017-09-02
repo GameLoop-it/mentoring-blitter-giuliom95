@@ -18,16 +18,16 @@ int max(int x, int y) {
 }
 
 void bgra8888_to_floatrgba(uint8_t* bgra8888, float* floatrgba) {
-    floatrgba[0] = bgra8888[2] / 255.f;
-    floatrgba[1] = bgra8888[1] / 255.f;
-    floatrgba[2] = bgra8888[0] / 255.f;
-    floatrgba[3] = bgra8888[3] / 255.f;
+    floatrgba[0] = bgra8888[2] * (1 / 255.f);
+    floatrgba[1] = bgra8888[1] * (1 / 255.f);
+    floatrgba[2] = bgra8888[0] * (1 / 255.f);
+    floatrgba[3] = bgra8888[3] * (1 / 255.f);
 }
 
 void rgb565_to_floatrgb(uint16_t* rgb565, float* floatrgb) {
-    floatrgb[0] = ((rgb565[0] & RGB565_R_MASK) >> (6+5)) / 31.f;
-    floatrgb[1] = ((rgb565[0] & RGB565_G_MASK) >> 5)     / 63.f;
-    floatrgb[2] =  (rgb565[0] & RGB565_B_MASK)           / 31.f;
+    floatrgb[0] = ((rgb565[0] & RGB565_R_MASK) >> (6+5))  * (1 / 31.f);
+    floatrgb[1] = ((rgb565[0] & RGB565_G_MASK) >> 5)      * (1 / 63.f);
+    floatrgb[2] =  (rgb565[0] & RGB565_B_MASK)            * (1 / 31.f);
 }
 
 float lerp(float from, float to, float time) {
